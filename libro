@@ -1,0 +1,52 @@
+package libro;
+import java.util.Scanner;
+
+public class Libro {
+     String titulo;
+     String autor;
+     int ejemplares=0;
+     int ejprestados=0;
+     
+     public Libro(){
+         
+     
+     }
+   public Libro(String titulo,int ejemplares,int ejprestados){
+        this.titulo=titulo;
+        this.ejemplares=0;
+        this.ejprestados=0;
+     
+   }
+   
+   public  void prestamo(int ejprestados){
+       if (ejprestados>0){
+           ejemplares+=ejprestados;
+           System.out.println("se a prestado " + ejprestados);
+           
+       } else {
+           System.out.println("no quedan ejemplares diponibles");
+       }
+   
+       
+   
+   }
+   public  void devocion(){
+       if(ejprestados<0){
+           ejemplares+=ejprestados;
+           System.out.println("no se podra devolver mas libros que no se hayn prestado");
+       
+       }
+       
+   
+   }
+   
+        
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Libro libro1=new Libro();
+        
+        
+    }
+    
+}
