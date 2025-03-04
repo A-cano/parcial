@@ -1,52 +1,94 @@
+
 package libro;
-import java.util.Scanner;
+
 
 public class Libro {
-     String titulo;
-     String autor;
-     int ejemplares=0;
-     int ejprestados=0;
-     
-     public Libro(){
-         
-     
-     }
-   public Libro(String titulo,int ejemplares,int ejprestados){
-        this.titulo=titulo;
-        this.ejemplares=0;
-        this.ejprestados=0;
-     
-   }
-   
-   public  void prestamo(int ejprestados){
-       if (ejprestados>0){
-           ejemplares+=ejprestados;
-           System.out.println("se a prestado " + ejprestados);
-           
-       } else {
-           System.out.println("no quedan ejemplares diponibles");
-       }
-   
-       
-   
-   }
-   public  void devocion(){
-       if(ejprestados<0){
-           ejemplares+=ejprestados;
-           System.out.println("no se podra devolver mas libros que no se hayn prestado");
-       
-       }
-       
-   
-   }
-   
-        
+    private String titulo;
+    private String autor;
+    private int ejemplares;
+    private int ejemplaresPrestados;
+
     
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Libro libro1=new Libro();
-        
-        
+    public Libro(String titulo) {
+        this.titulo = titulo;
+        this.autor = "Desconocido";
+        this.ejemplares = 5; 
+        this.ejemplaresPrestados = 0;
     }
+
     
+    public Libro(String titulo, String autor, int ejemplares) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ejemplares = ejemplares;
+        this.ejemplaresPrestados = 0;
+    }
+
+    
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public int getEjemplares() {
+        return ejemplares;
+    }
+
+    public void setEjemplares(int ejemplares) {
+        this.ejemplares = ejemplares;
+    }
+
+    public int getEjemplaresPrestados() {
+        return ejemplaresPrestados;
+    }
+
+    public void setEjemplaresPrestados(int ejemplaresPrestados) {
+        this.ejemplaresPrestados = ejemplaresPrestados;
+    }
+
+   
+    public void prestar() {
+        if (ejemplaresPrestados < ejemplares) {
+            ejemplaresPrestados++;
+            System.out.println("Se ha prestado un ejemplar de " + titulo + ". Ejemplares prestados: " + ejemplaresPrestados);
+        } else {
+            System.out.println("No hay ejemplares disponibles para prestar.");
+        }
+    }
+
+    
+    public void devolver() {
+        if (ejemplaresPrestados > 0) {
+            ejemplaresPrestados--;
+            System.out.println("Se ha devuelto un ejemplar de " + titulo + ". Ejemplares prestados: " + ejemplaresPrestados);
+        } else {
+            System.out.println("No hay ejemplares prestados para devolver.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Libro libro1 = new Libro("El Quijote");
+        libro1.prestar();
+        libro1.prestar();
+        libro1.devolver();
+        libro1.devolver();
+        libro1.devolver(); 
+
+        Libro libro2 = new Libro("Cien años de soledad", "Gabriel García Márquez", 3);
+        libro2.prestar();
+        libro2.prestar();
+        libro2.prestar();
+        libro2.prestar(); 
+    }
 }
